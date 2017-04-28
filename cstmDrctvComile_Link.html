@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>
+            Custom Directives Using Compile and Link Function
+        </title>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.min.js"></script>
+    </head>
+    <body ng-app="myApp" ng-controller = "myController">
+        
+        <p>Enter Name : <input type = "text" ng-model = "name"></p>
+        <userinfo user = "dikshit">The First Text Will Be Replaced..</userinfo>
+        <userinfo user = "kamal">The Second Text Will Be Replaced..</userinfo>
+        <userinfo user = "Harish"></userinfo>
+        <userinfo user = "Deepika"></userinfo>
+        
+        <script src = './app.js'></script>
+    </body>
+</html>

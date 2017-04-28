@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Custom Directives in AngularJS</title>
+        <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    </head>
+    <body ng-app = "myApp" ng-controller="myController">
+        <h2>The Custom Directives</h2>
+        <div>
+            <div ng-repeat="movie in movies">
+                <my-templates title="{{movie}}"> <p> Moovie Title :</p> </my-templates><br/>
+            </div>
+        </div>
+        
+        <script>
+           
+            var myApp = angular.module("myApp",[]);
+           
+            myApp.controller("myController",function($scope){
+                $scope.movies = ['Furious','IceAge','HitMen','Avengers'];
+            });
+
+
+            myApp.directive("myTemplates",function(){
+                return {
+                    restrict : 'E',
+                    transclude :'true',
+                    template : '<div ng-transclude></div>',
+                    
+
+                    link: function(scope, element, attr){
+                        element.append("<strong>"+attr.title+"</strong>");
+                        if(attr.title === "Furious"){
+                            element.append("<br> Dwayne Johnson Starrer....");
+                            element.append("<br/><b> This is the Best Action movie</b><br/>");
+                        }
+                        else if(attr.title === "HitMen"){
+                            element.append("<br> British Agent...<br/>");
+                        }
+                        else if(attr.title === "IceAge"){
+                            element.append("<br> Best Animated..<br/>");
+                        }
+                        else if(attr.title === "Avengers"){
+                            element.append("<br> Marvels Best...<br/>");
+                        }
+                    }
+                };
+            });
+        </script>
+    </body>
+</html> 
+        

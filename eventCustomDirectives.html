@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Event Custom Directives</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.js"></script>
+    </head>
+    <body>
+        <div ng-app="myApp">
+            <h3>There is calling a Custom Directives</h3>
+            <my-directive>clickMe
+                <p>After You clicked it....</p>
+            </my-directive>
+        </div>
+        <script>
+            var app = angular.module("myApp",[]);
+            app.directive('myDirective', function () {
+                return {
+                    link: function ($scope, element, attrs) {
+                        element.bind('click', function () {
+                            element.html('You clicked me!  ');
+                            
+                            element.append('  You Clicked at 1 Time.  ');
+                            
+                            element.append('  I,m Following youhh  ');
+                        });
+                        element.bind('mouseenter', function () {
+                            //count++;
+                            element.css('background-color', 'yellow');
+                            //element.html('You over mouse at count times');
+                        });
+                        
+                        
+                    }
+                };
+            });
+        </script>
+    </body>
+</html>
+    

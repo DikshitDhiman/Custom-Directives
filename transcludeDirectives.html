@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Transclude Custom Directives</title>
+        <script src ="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.min.js"></script>
+    </head>
+    <body ng-app = "myapp" ng-controller = "MyController">
+        <h4>This is Gonna be Show here</h4>
+        <span ng-repeat = "x in name">
+            <mytransclude><br/>The Name is : {{x}}</mytransclude>
+        </span>
+        <mytransclude>{{lastName}}</mytransclude>
+<script>
+    var myapp = angular.module("myapp", []);
+
+    myapp.directive('mytransclude', function() {
+        var directive = {};
+
+        directive.restrict = 'E'; /* restrict this directive to elements */
+        directive.transclude = true;
+        directive.template = "<div class='myTransclude' ng-transclude></div>";
+        directive.compile = function(elements , attributes) {
+            elements.append("Main phir Bhi Tumko Chahunga");
+        
+            var linkFunction = function($scope , elements , attributes) {
+                element.css("background-color" , "yellow");
+            }
+            return linkFunction;
+        }
+        return directive;
+    });
+
+    myapp.controller("MyController", function($scope, $http) {
+        $scope.name = ["Jakob","John","Jhanvi","kali","kalpana","Johnny","celena","Chetna"];
+        $scope.lastName = "Dhiman";
+    });
+
+</script>
+</body>
+</html>

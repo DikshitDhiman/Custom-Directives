@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>SScopes in Custom Directives</title>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.min.js"></script>
+    </head>
+
+    <body ng-app = "myApp" ng-controller="myController">
+        <div>
+            <p> Movie : {{movie}}</p>
+            <p>Change Moovie title : <input type = "text" ng-model = "moovie"/></p>
+            <div>
+                <mymoovie></mymoovie>
+            </div>
+        <div>
+        <script>
+            
+            var myApp = angular.module("myApp",[]);
+
+            myApp.directive("mymoovie", function() {
+                return {
+                    restrict : 'E',
+                    scope : {
+                        movie : '='
+                    },
+                    template : "<div>Moovie title is : {{movie}}</p></div><p>Type a new Movie title  : <input type = 'text' ng-model = 'movie' />"
+                }
+
+            });
+
+
+            myApp.controller("myController",function($scope) {
+                $scope.moovie = "Avengers";
+            });
+
+        </script> 
+    </body>
+</html>
